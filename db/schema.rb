@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130610212006) do
+ActiveRecord::Schema.define(:version => 20130611115928) do
 
   create_table "evaluations", :force => true do |t|
     t.integer  "student_id"
@@ -35,10 +35,10 @@ ActiveRecord::Schema.define(:version => 20130610212006) do
     t.date     "dob"
     t.string   "email"
     t.string   "ip"
-    t.decimal  "gpa",              :precision => 10, :scale => 0
+    t.decimal  "gpa",              :precision => 8, :scale => 2
     t.text     "characterization"
-    t.datetime "created_at",                                      :null => false
-    t.datetime "updated_at",                                      :null => false
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
   end
 
   create_table "subjects", :force => true do |t|

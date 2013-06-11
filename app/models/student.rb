@@ -12,5 +12,11 @@ class Student < ActiveRecord::Base
   validates :dob, presence:true
   validates :email, :presence  => true,
                     :format    => { :with => email_regex }
+                    
+  default_scope order: 'students.gpa DESC'
+                    
+  def self.name_surname_id
+    all.collect { |student| [ student.surname + " " + student.name, student.id] }
+  end
   
 end

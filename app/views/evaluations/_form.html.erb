@@ -13,19 +13,19 @@
 
   <div class="field">
     <%= f.label :student_id %><br />
-    <%= f.number_field :student_id %>
+    <%= f.select :student_id, Student.name_surname_id %>
   </div>
   <div class="field">
     <%= f.label :subject_id %><br />
-    <%= f.number_field :subject_id %>
+    <%= f.select :subject_id, Subject.names_id %>
   </div>
   <div class="field">
     <%= f.label :semestr %><br />
-    <%= f.number_field :semestr %>
+    <%= f.select :semestr, Evaluation::SEMESTERS %>
   </div>
   <div class="field">
     <%= f.label :evaluation %><br />
-    <%= f.number_field :evaluation %>
+    <%= f.select :evaluation, Evaluation::EVALUATIONS %>
   </div>
   <div class="actions">
     <%= f.submit %>

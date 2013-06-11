@@ -1,0 +1,17 @@
+<h1>Listing evaluations</h1>
+<h1><% @student.surname @student.name %></h1>
+<table>
+  <tr>
+    <th>Subject</th>
+    <th>Semestr</th>
+    <th>Evaluation</th>
+  </tr>
+
+<% @evaluations.each do |evaluation| %>
+  <tr>
+    <td><%= evaluation.subject_id %></td>
+    <td><%= evaluation.semestr %></td>
+    <td><%= evaluation.evaluation %></td>
+  </tr>
+<% end %>
+</table>

@@ -21,11 +21,11 @@
   </div>
   <div class="field">
     <%= f.label :group_id %><br />
-    <%= f.number_field :group_id %>
+    <%= f.select :group_id, Group.names_id %>
   </div>
   <div class="field">
     <%= f.label :dob %><br />
-    <%= f.date_select :dob, :start_year => 1950, :end_year => Time.now.year - 12 %>
+    <%= f.date_select :dob, :start_year => 1970, :end_year => Time.now.year - 12 %>
   </div>
   <div class="field">
     <%= f.label :email %><br />

@@ -44,6 +44,7 @@ class EvaluationsController < ApplicationController
 
     respond_to do |format|
       if @evaluation.save
+        Evaluation.gpa_for_student(@evaluation.student_id)
         format.html { redirect_to @evaluation, notice: 'Evaluation was successfully created.' }
         format.json { render json: @evaluation, status: :created, location: @evaluation }
       else
