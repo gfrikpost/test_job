@@ -40,6 +40,24 @@ class Student < ActiveRecord::Base
     }
     @sql = @sql.join(" AND ")
     return @sql
-  end  
+  end
+  
+  def self.ip_charcterization
+    @duplicates = Student.find( :all,
+      :select     => "ip , COUNT(ip) AS duplicate_count",
+      :conditions => "ip IS NOT NULL AND ip !=''",
+      :group      => "ip HAVING duplicate_count > 1"
+    )
+    
+    @ip = []
+    
+    @duplicates.each do |dup|
+      @ip << dup.ip
+    end
+    
+    @students = Student.where("characterization != ''", :ip => @ip).all
+    
+    return @students
+  end
   
 end

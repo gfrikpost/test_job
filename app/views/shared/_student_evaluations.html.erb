@@ -1,0 +1,49 @@
+<% if params[:student_id] %>
+  <h1><%= @student.surname + " " + @student.name %></h1>
+  <table>
+    <tr>
+      <th>Subject</th>
+      <th>Semestr</th>
+      <th>Evaluation</th>
+    </tr>
+
+  <% @evaluations.each do |evaluation| %>
+    <tr>
+      <td><%= Subject.find_by_id(evaluation.subject_id).name %></td>
+      <td><%= evaluation.semestr %></td>
+      <td><%= evaluation.evaluation %></td>
+    </tr>
+  <% end %>
+  </table>
+<% else %>
+  <table>
+    <tr>
+      <th>Surname</th>
+      <th>Name</th>
+      <th>Subject</th>
+      <th>Semestr</th>
+      <th>Evaluation</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  
+  <% @evaluations.each do |evaluation| %>
+    <tr>
+      <td><%= Student.find_by_id(evaluation.student_id).surname %></td>
+      <td><%= Student.find_by_id(evaluation.student_id).name %></td>
+      <td><%= Subject.find_by_id(evaluation.subject_id).name %></td>
+      <td><%= evaluation.semestr %></td>
+      <td><%= evaluation.evaluation %></td>
+      <td><%= link_to 'Show', evaluation %></td>
+      <td><%= link_to 'Edit', edit_evaluation_path(evaluation) %></td>
+      <td><%= link_to 'Destroy', evaluation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+  </table>
+
+<br />
+
+<%= link_to 'New Evaluation', new_evaluation_path %>
+
+<% end %>

@@ -15,7 +15,12 @@ TestJob::Application.routes.draw do
   end
   
   
+  
   match '/pages/index', :to => 'pages#index'
+  
+  match '/pages/ip_character', :to => 'pages#ip_character'
+  
+  root :to => 'pages#index'
   
 
   # The priority is based upon order of creation:

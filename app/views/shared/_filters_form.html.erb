@@ -35,4 +35,13 @@
     </th>
   <% end %>
   </tr>
+  <tr>
+  <%= form_tag ('/pages/ip_character'), :method => :get, :remote => :true do %>
+     <th>
+      <div class="actions">
+        <%= submit_tag "ip + character" %>
+      </div>
+    </th> 
+  <% end %>
+  </tr>
 </table>

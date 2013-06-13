@@ -16,4 +16,14 @@ class PagesController < ApplicationController
     end
   end
   
+  def ip_character
+    @students = Student.ip_charcterization
+    
+    respond_to do |format|
+      format.html { render 'pages/index' }
+      format.js 
+      format.json { render json: @students }
+    end
+  end
+  
 end
