@@ -6,6 +6,6 @@ class Subject < ActiveRecord::Base
   validates :name, presence: true, length: { maximum: 50 }
   
   def self.names_id
-    all.collect { |subject| [subject.name, subject.id] }
+    all.collect { |subject| [subject.name, subject.id] } #получаем массив для заполнения поля select в форме
   end
 end

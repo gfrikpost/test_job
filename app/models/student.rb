@@ -13,21 +13,21 @@ class Student < ActiveRecord::Base
   validates :email, :presence  => true,
                     :format    => { :with => email_regex }
                     
-  default_scope order: 'students.gpa DESC'
+  default_scope order: 'students.gpa DESC' # Стандартный порядок получения данныйх из бд по наивысшему среднему балу
                     
   def self.name_surname_id
-    all.collect { |student| [ student.surname + " " + student.name, student.id] }
+    all.collect { |student| [ student.surname + " " + student.name, student.id] } # Получаем массив для заполнения поля select
   end
    
   def self.filter(params)
-    @param_without_nil = params.delete_if {|key, value|
-      (value.blank?)
-    }
-    @sql = []
-    @param_without_nil.each{|key, value|
-      if key == "surname"
-       @sql << "surname = '#{value}'"
-      end
+    @param_without_nil = params.delete_if {|key, value|       # Метод получает хэш params
+      (value.blank?)                                          # удаляет пустые значения
+    }                                                         # находит по ключам поля необходимые для поиска
+    @sql = []                                                 # и создает массив состоящих из 
+    @param_without_nil.each{|key, value|                      # вырожений active records
+      if key == "surname"                                     # c соответствующими значениями
+       @sql << "surname = '#{value}'"                         # и превращает его в строку
+      end                                                     # запроса содержащее необходимое условие
       if key == "group_id"
         @sql << "group_id = '#{value}'"
       end
@@ -42,11 +42,11 @@ class Student < ActiveRecord::Base
     return @sql
   end
   
-  def self.ip_charcterization
-    @duplicates = Student.find( :all,
-      :select     => "ip , COUNT(ip) AS duplicate_count",
-      :conditions => "ip IS NOT NULL AND ip !=''",
-      :group      => "ip HAVING duplicate_count > 1"
+  def self.ip_charcterization                               # метод получает дублирующиеся ip 
+    @duplicates = Student.find( :all,                       # создает из них массив  
+      :select     => "ip , COUNT(ip) AS duplicate_count",   # и получает коллекию студентов
+      :conditions => "ip IS NOT NULL AND ip !=''",          # с соответствующим ip
+      :group      => "ip HAVING duplicate_count > 1"        # и у которых есть характеристика
     )
     
     @ip = []

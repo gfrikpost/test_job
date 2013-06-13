@@ -11,7 +11,7 @@ TestJob::Application.routes.draw do
   resources :groups
   
   resources :students do
-    resources :evaluations
+    resources :evaluations # Создаем вложенные маршруты для оценок через студентов
   end
   
   

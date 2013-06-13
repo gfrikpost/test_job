@@ -2,8 +2,8 @@ class EvaluationsController < ApplicationController
   # GET /evaluations
   # GET /evaluations.json
   def index
-    if params[:student_id]
-      @student = Student.find(params[:student_id])
+    if params[:student_id]                                # в случае обработки вложенного маршрута
+      @student = Student.find(params[:student_id])        # получаем оценки для студента с params[:student_id]
       @evaluations = @student.evaluations
     else
       @evaluations = Evaluation.all
@@ -49,8 +49,8 @@ class EvaluationsController < ApplicationController
     @evaluation = Evaluation.new(params[:evaluation])
 
     respond_to do |format|
-      if @evaluation.save
-        Evaluation.gpa_for_student(@evaluation.student_id)
+      if @evaluation.save       # в случае удачного сохранения оценки вызываем метод, который вычисляет средний
+        Evaluation.gpa_for_student(@evaluation.student_id)  # балл и записывает в таблицу студенты
         format.html { redirect_to @evaluation, notice: 'Evaluation was successfully created.' }
         format.json { render json: @evaluation, status: :created, location: @evaluation }
       else
