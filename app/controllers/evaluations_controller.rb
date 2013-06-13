@@ -2,7 +2,12 @@ class EvaluationsController < ApplicationController
   # GET /evaluations
   # GET /evaluations.json
   def index
-    @evaluations = Evaluation.all
+    if params[:student_id]
+      @student = Student.find(params[:student_id])
+      @evaluations = @student.evaluations
+    else
+      @evaluations = Evaluation.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb

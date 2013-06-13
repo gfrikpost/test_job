@@ -1,0 +1,29 @@
+<table>
+  
+  <tr>
+    <th>Surname</th>
+    <th>Name</th>
+    <th>Group</th>
+    <th>Dob</th>
+    <th>Email</th>
+    <th>Ip</th>
+    <th>Time</th>
+    <th>Gpa</th>
+    <th>Characterization</th>
+  </tr>
+
+<% @students.each do |student| %>
+  <tr>
+    <td><%= student.surname %></td>
+    <td><%= student.name %></td>
+    <td><%= Group.find_by_id(student.group_id).name %></td>
+    <td><%= student.dob %></td>
+    <td><%= student.email %></td>
+    <td><%= student.ip %></td>
+    <td><%= student.created_at %></td>
+    <% if student.gpa %>
+      <td><%= link_to student.gpa , student_evaluations_path(student) %></td>
+      <td><%= student.characterization %></td>
+    <% end %>
+<% end %>
+</table>

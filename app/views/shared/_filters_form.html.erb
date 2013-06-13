@@ -1,0 +1,38 @@
+<table>
+  <tr>
+    <th>Surname</th>
+    <th>Group</th>
+    <th>>=GPA</th>
+    <th><=GPA</th>
+  </tr>
+
+  <tr>
+  <%= form_tag ('/pages/index'), :method => :get, :remote => true do %>
+    <th>
+      <div class="field">
+        <%= text_field_tag :surname, params[:f_surname] %>
+      </div>
+    </th>
+    <th>
+      <div class="field">
+        <%= select_tag :group_id ,options_for_select(Group.names_id), prompt: 'select group' %>
+      </div>
+    </th>
+    <th>
+      <div class="field">
+        <%= number_field_tag :gpa_greater_or_equal, params[:gpa_greater_or_equal] %>
+      </div>
+    </th>
+    <th>
+      <div class="field">
+        <%= number_field_tag :gpa_less_or_equal, params[:gpa_less_or_equal] %>
+      </div>
+    </th>
+    <th>
+      <div class="actions">
+        <%= submit_tag "search" %>
+      </div>
+    </th>
+  <% end %>
+  </tr>
+</table>

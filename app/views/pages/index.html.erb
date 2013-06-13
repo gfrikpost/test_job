@@ -1,28 +1,14 @@
+<h1>Registration</h1>
+<div id="student_form">
+  <%= render 'shared/student_form' %>
+</div>
+
+<h1>Filters</h1>
+<div id="filters_form">
+  <%= render 'shared/filters_form' %>
+</div>
+
 <h1>Listing students</h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Surname</th>
-    <th>Group</th>
-    <th>Dob</th>
-    <th>Email</th>
-    <th>Ip</th>
-    <th>Time</th>
-    <th>Gpa</th>
-    <th>Characterization</th>
-  </tr>
-
-<% @students.each do |student| %>
-  <tr>
-    <td><%= student.name %></td>
-    <td><%= student.surname %></td>
-    <td><%= student.group_id %></td>
-    <td><%= student.dob %></td>
-    <td><%= student.email %></td>
-    <td><%= student.ip %></td>
-    <td><%= student.created_at %></td>
-    <td><%= student.gpa %></td>
-    <td><%= student.characterization %></td>
-<% end %>
-</table>
+<div id="students_table">
+  <%= render 'shared/students_table' %>
+</div>

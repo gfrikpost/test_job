@@ -1,0 +1,39 @@
+<%= form_for(@student_new = Student.new, :remote => true) do |f| %>
+  <% if @student_new.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@student_new.errors.count, "error") %> prohibited this student from being saved:</h2>
+
+      <ul>
+      <% @student_new.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :surname %><br />
+    <%= f.text_field :surname %>
+  </div>
+  <div class="field">
+    <%= f.label :group_id %><br />
+    <%= f.select :group_id, Group.names_id %>
+  </div>
+  <div class="field">
+    <%= f.label :dob %><br />
+    <%= f.date_select :dob, :start_year => 1970, :end_year => Time.now.year - 12 %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :ip, :value => request.remote_ip %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Registred" %>
+  </div>
+<% end %>
