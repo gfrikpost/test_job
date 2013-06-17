@@ -7,7 +7,8 @@ gem 'rails', '3.2.13'
 
 gem 'mysql2'
 gem 'will_paginate', '3.0.3'
-
+gem 'bootstrap-sass', '2.1'
+gem 'bootstrap-will_paginate', '0.0.6'
 
 # Gems used only for assets and not required
 # in production environments by default.

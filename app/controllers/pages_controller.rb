@@ -6,6 +6,11 @@ class PagesController < ApplicationController
       scope = Student.scoped
       scope = scope.with_surname(params[:surname]) if params[:surname].present?
       scope = scope.with_group_id(params[:group_id]) if params[:group_id].present?
+      
+      # Выборка использует связь между таблицами чтобы найти студентов у которых есть оценки в указанном семестре 
+      scope = scope.joins(:evaluations).where("evaluations.semestr = ? ", params[:semestr]) if params[:semestr].present?
+      
+      
       scope = scope.if_gpa_greater_or_equal(params[:gpa_greater_or_equal]) if params[:gpa_greater_or_equal].present?
       scope = scope.if_gpa_less_or_equal(params[:gpa_less_or_equal]) if params[:gpa_less_or_equal].present?
       @students = scope     # формируем необходимый sql запросс

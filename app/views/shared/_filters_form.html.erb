@@ -9,45 +9,45 @@
 
   <tr>
   <%= form_tag ('/pages/index'), :method => :get, :remote => true do %>
-    <th>
+    <td>
       <div class="field">
         <%= text_field_tag :surname, params[:f_surname] %>
       </div>
-    </th>
-    <th>
+    </td>
+    <td>
       <div class="field">
         <%= select_tag :group_id ,options_for_select(@groups), prompt: 'select group' %>
       </div>
-    </th>
-    <th>
+    </td>
+    <td>
       <div class="field">
-        <%= select_tag :semestr, options_for_select(@semestrs), prompt: 'select semestr' %>
+        <%= select_tag :semestr, options_for_select(@semestrs), prompt: 'select semestr', :class => "span2" %>
       </div>
-    </th>
-    <th>
+    </td>
+    <td>
       <div class="field">
-        <%= number_field_tag :gpa_greater_or_equal, params[:gpa_greater_or_equal] %>
+        <%= text_field_tag :gpa_greater_or_equal, params[:gpa_greater_or_equal], :class => "span1" %>
       </div>
-    </th>
-    <th>
+    </td>
+    <td>
       <div class="field">
-        <%= number_field_tag :gpa_less_or_equal, params[:gpa_less_or_equal] %>
+        <%= text_field_tag :gpa_less_or_equal, params[:gpa_less_or_equal], :class => "span1" %>
       </div>
-    </th>
-    <th>
+    </td>
+    <td>
       <div class="actions">
-        <%= submit_tag "search" %>
+        <%= submit_tag "search", :class => "btn btn-primary" %>
       </div>
-    </th>
+    </td>
   <% end %>
   </tr>
   <tr>
   <%= form_tag ('/pages/ip_character'), :method => :get, :remote => :true do %>
-     <th>
+     <td>
       <div class="actions">
-        <%= submit_tag "ip + character" %>
+        <%= submit_tag "ip + character", :class => "btn btn-primary" %>
       </div>
-    </th> 
+    </td> 
   <% end %>
   </tr>
 </table>

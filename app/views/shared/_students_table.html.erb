@@ -1,6 +1,6 @@
 <div id="student_evaluations">
 </div>
-<table>
+<table class="table">
   
   <tr>
     <th>Surname</th>
@@ -26,8 +26,8 @@
     <td><%= student.email %></td>
     <td><%= student.ip %></td>
     <td><%= student.created_at %></td>
-    <td colspan=3>
-    <table>
+    <td colspan="3">
+    <table class="table-bordered">
       <% Evaluation.evaluations_for_student(student.id, params[:semestr]).each do |evaluation| %>
         <tr>
         <td><%= Subject.find_by_id(evaluation.subject_id).name %></td>

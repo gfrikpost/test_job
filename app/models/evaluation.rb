@@ -19,11 +19,12 @@ class Evaluation < ActiveRecord::Base
     student.save
   end
   
-  def self.evaluations_for_student(student_id, semestr = false)
-    if semestr
-      select("subject_id, semestr, evaluation").where("student_id = ? AND semestr = ?", student_id, semestr)
-    else
+  def self.evaluations_for_student(student_id, semestr)
+    if semestr.nil? || semestr == ''
       select("subject_id, semestr, evaluation").where("student_id = ?", student_id)
+    else
+      
+      select("subject_id, semestr, evaluation").where("student_id = ? AND semestr = ?", student_id, semestr)
     end
   end
 end
