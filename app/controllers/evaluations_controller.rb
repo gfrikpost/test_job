@@ -1,10 +1,17 @@
 class EvaluationsController < ApplicationController
+  before_filter :require_login, :only => [:create, :update, :delete, :new, :edit]
   # GET /evaluations
   # GET /evaluations.json
   def index
-    if params[:student_id]                                # в случае обработки вложенного маршрута
-      @student = Student.find(params[:student_id])        # получаем оценки для студента с params[:student_id]
-      @evaluations = @student.evaluations
+    if params[:student_id]
+      if params[:semestr]
+        @student = Student.find(params[:student_id])
+        @evaluations = @student.evaluations.where(:semestr => params[:semestr])
+      else                                                # в случае обработки вложенного маршрута
+        @student = Student.find(params[:student_id])
+        @evaluations = @student.evaluations
+      end                                                 # получаем оценки для студента с params[:student_id]
+      
     else
       @evaluations = Evaluation.all
     end

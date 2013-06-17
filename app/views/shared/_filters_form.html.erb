@@ -2,6 +2,7 @@
   <tr>
     <th>Surname</th>
     <th>Group</th>
+    <th>Semestr</th>
     <th>>=GPA</th>
     <th><=GPA</th>
   </tr>
@@ -15,7 +16,12 @@
     </th>
     <th>
       <div class="field">
-        <%= select_tag :group_id ,options_for_select(Group.names_id), prompt: 'select group' %>
+        <%= select_tag :group_id ,options_for_select(@groups), prompt: 'select group' %>
+      </div>
+    </th>
+    <th>
+      <div class="field">
+        <%= select_tag :semestr, options_for_select(@semestrs), prompt: 'select semestr' %>
       </div>
     </th>
     <th>

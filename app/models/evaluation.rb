@@ -15,8 +15,15 @@ class Evaluation < ActiveRecord::Base
     collect_eval = student.evaluations.all.collect{ |eval| eval.evaluation }
     summ = collect_eval.each.sum                 # и записывает его в таблицу студенты
     subject_count = collect_eval.count
-    gpa = summ/(subject_count).to_f
-    student.gpa = gpa
+    student.gpa = summ/(subject_count).to_f
     student.save
+  end
+  
+  def self.evaluations_for_student(student_id, semestr = false)
+    if semestr
+      select("subject_id, semestr, evaluation").where("student_id = ? AND semestr = ?", student_id, semestr)
+    else
+      select("subject_id, semestr, evaluation").where("student_id = ?", student_id)
+    end
   end
 end

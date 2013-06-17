@@ -1,18 +1,13 @@
 class StudentsController < ApplicationController
+  before_filter :require_login, :only => [:update, :delete, :new, :edit]
   # GET /students
   # GET /students.json
   def index
-    
-    if params[:surname] or params[:group_id] or params[:gpa_greater_or_equal] or params[:gpa_less_or_equal]
-      @sql = Student.filter(params)
-      @students = Student.where(@sql)
-    else
-      @students = Student.all
+    @students = Student.all
 
-      respond_to do |format|
-        format.html # index.html.erb
-        format.json { render json: @students }
-      end
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @students }
     end
   end
 
@@ -55,6 +50,7 @@ class StudentsController < ApplicationController
         format.json { render json: @student, status: :created, location: @student }
       else
         format.html { render action: "new" }
+        format.js { render js: "alert('Correctly fill in the fields!!!');" }
         format.json { render json: @student.errors, status: :unprocessable_entity }
       end
     end

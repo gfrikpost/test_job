@@ -10,6 +10,9 @@
     <th>Email</th>
     <th>Ip</th>
     <th>Time</th>
+    <th>subject</th>
+    <th>semestr</th>
+    <th>evaluation</th>
     <th>Gpa</th>
     <th>Characterization</th>
   </tr>
@@ -23,9 +26,23 @@
     <td><%= student.email %></td>
     <td><%= student.ip %></td>
     <td><%= student.created_at %></td>
+    <td colspan=3>
+    <table>
+      <% Evaluation.evaluations_for_student(student.id, params[:semestr]).each do |evaluation| %>
+        <tr>
+        <td><%= Subject.find_by_id(evaluation.subject_id).name %></td>
+        <td><%= evaluation.semestr %></td>
+        <td><%= evaluation.evaluation %></td>
+        </tr> 
+    <% end %>
+    </table>
+    </td>
+  
+    
     <% if student.gpa %>
-      <td><%= link_to student.gpa , student_evaluations_path(student), :remote => true %></td>
+      <td><%= link_to student.gpa , student_evaluations_path(student, params[:semestr]), :remote => true %></td>
       <td><%= student.characterization %></td>
     <% end %>
 <% end %>
+
 </table>
